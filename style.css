@@ -94,11 +94,11 @@ h6 {
   isolation: isolate;
 }
 html {
-  --main-color: #00bfff;
+  --main-color: #d27d2d;
   --secondary-color: #f0f8ff;
   --text-color: #515252;
   /* --box-shadow:  */
-  min-height: 100vh;
+  min-height: fit-content;
 }
 body {
   background-color: var(--secondary-color);
@@ -107,6 +107,13 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 h1 {
@@ -115,37 +122,40 @@ h1 {
   color: black;
 }
 header {
+  margin-top: 32px;
+
   z-index: 2;
 
-  /* height: fit-content; */
-  padding-top: 32px;
   justify-content: center;
   display: flex;
   gap: 2rem;
-  /* width: 100%; */
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.info {
+  isolation: isolate;
+  z-index: 2;
+  display: flex;
 }
 
 .shape {
   z-index: 1;
+  display: block;
+  min-width: 100vw;
+  min-height: 400px;
+  max-height: 500px;
+  top: 0;
+  background-color: var(--main-color);
   position: absolute;
-  width: 0;
-  height: 0;
-  border-right: 200px solid transparent;
-  border-left: 200px solid transparent;
-  border-top: 200px solid black;
-  margin-top: auto;
-  margin-left: 60px;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
 }
 .about-me {
-  z-index: 2;
+  z-index: 1;
   background-color: var(--secondary-color);
   color: var(--text-color);
   font-size: 1rem;
   font-family: "Roboto";
   align-self: center;
-  max-width: 900px;
+  max-width: 600px;
   min-height: 300px;
   padding: 24px;
   margin-left: -2rem;
@@ -155,7 +165,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  box-shadow: 2px 1px 3px 2px rgb(155, 155, 155);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .socials {
@@ -163,13 +173,22 @@ header {
 }
 
 .header-image-container {
+  z-index: 2;
   max-width: 700px;
-  min-height: 400px;
+  min-height: 300px;
 }
 .header-image-container img {
   object-fit: fill;
   object-position: center;
-  min-height: 100%;
+  min-height: 300px;
+  min-width: 300px;
+  max-height: 500px;
+}
+
+.work {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 main {
@@ -188,42 +207,252 @@ main {
   width: 32px;
   height: auto;
 }
-/* section {
-  width: 100%;
-} */
 
 .projects {
-  /* justify-content: center; */
-  /* align-items: center; */
-  margin: 0 auto 0 auto;
   display: grid;
   gap: 24px;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-around;
 }
 
 .project-card {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  justify-self: center;
   max-width: 280px;
   max-height: 320px;
-  /* margin: 0 auto 0 auto; */
-  border: 1px solid black;
+}
+
+.project-details {
+  margin: 12px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.project-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.project-links > img {
+  width: 24px;
+  height: auto;
+  /* gap: 8px; */
+}
+
+.project-links {
+  gap: 8px;
 }
 .project-image img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  width: 100%;
-  height: 33%;
+}
+
+.project-image {
+  background-color: black;
+  max-width: 280px;
+
+  aspect-ratio: 3/2;
+}
+.project-image > P {
+  display: flex;
+  text-align: center;
+  align-content: center;
+  height: 100%;
+  display: block;
+  margin: auto;
+  font-size: 24px;
+  font-weight: 500;
+  font-family: Playfair;
+}
+.project-image.restaurant {
+  background-color: #f4ebd0;
+}
+
+.project-image.tic-tac-toe {
+  background-color: #9e2a2b;
+}
+
+.project-image.todo {
+  background-color: goldenrod;
 }
 
 footer {
+  font-family: Roboto;
+  margin-top: 20px;
+  position: relative;
   color: white;
   background-color: var(--main-color);
-  margin-top: 4rem;
   width: 100vw;
-  bottom: 0;
-}
-@media (max-width: 425px) {
+  bottom: 0px;
+  padding: 40px;
+  display: flex;
+  gap: 40px;
 }
 
-@media (max-width: 768px) {
+.contact-me {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contacts > div {
+  font-size: 24px;
+  display: flex;
+  gap: 8px;
+}
+footer h2 {
+  font-weight: 400;
+  font-size: 32px;
+}
+
+footer p {
+  font-size: 24px;
+}
+
+.footer-image {
+  width: 800px;
+  height: 400px;
+  background-image: url("public/assets/footer-img.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.contact-links {
+  width: 20px;
+  height: auto;
+}
+.contact-me .icons {
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    display: block;
+    overflow: hidden;
+  }
+  .shape {
+    left: 0px;
+  }
+  .header-image-container {
+    float: left;
+    isolation: isolate;
+    margin: 0 20px 0 0;
+    position: relative;
+    margin-right: 20px;
+  }
+  .about-me {
+    margin: 0;
+    display: block;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 20px;
+  }
+
+  .icons.socials {
+    position: absolute;
+    margin-bottom: 4px;
+    right: 0;
+  }
+
+  .icons > img {
+    width: 24px;
+  }
+
+  .header-image-container img {
+    max-height: 300px;
+    max-width: 400px;
+    min-height: 100px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  main {
+    width: 100%;
+  }
+
+  main h1:first-of-type {
+    text-align: center;
+  }
+  .about-me {
+    display: flex;
+    background: transparent;
+    margin: 0;
+    margin-top: -80px;
+    box-shadow: none;
+    z-index: 3;
+  }
+  .about-me h1 {
+    display: flex;
+    align-self: center;
+    margin: 0;
+  }
+  header {
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto 0 auto;
+  }
+
+  .icons.socials {
+    position: relative;
+    margin: 0 auto 0 auto;
+  }
+
+  .header-image-container {
+    display: flex;
+    justify-content: center;
+    min-height: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 100vw;
+    margin: 0 auto 0 auto;
+    z-index: 3;
+  }
+  .header-image-container img {
+    min-width: 0px;
+    min-height: 300px;
+    max-height: 500px;
+  }
+  .shape {
+    position: absolute;
+    top: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 95%);
+  }
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    justify-self: center;
+  }
+
+  footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 0;
+    width: 100vw;
+  }
+  footer p {
+    font-size: 12px;
+  }
+
+  .contacts > div {
+    font-size: 12px;
+  }
+
+  footer h2 {
+    font-size: 24px;
+    align-self: center;
+  }
+  .contact-me .icons {
+    align-self: center;
+  }
+
+  .footer-image {
+    width: 100vw;
+    height: 300px;
+    background-size: cover;
+  }
 }
